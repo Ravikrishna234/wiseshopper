@@ -1,0 +1,25 @@
+payTmPage = requests.get(payTm_url)
+        # print(payTmPage.text)
+        payTm_html = bs(payTmPage.text, "html.parser")  # parsing the webpage as HTML
+        bigboxes = payTm_html.findAll("div", {"class": "bhgxx2 col-12-12"})  # seacrhing for appropriate tag to redirect to the product link
+        # filtered = payTm_html.find_all('div', class_="bhgxx2 col-12-12")
+        # print(filtered)
+        # print(bigboxes)
+        del bigboxes[0:3]  # the first 3 members of the list do not contain relevant information, hence deleting them.
+        box = bigboxes[0]  # taking the first iteration (for demo)
+        productname=payTm_html.findAll('a', class_="_2cLu-l")
+        productprice=payTm_html.findAll('div',class_="_1vC4OE")
+        # productdict=
+        print(len(productname))
+        productlist={}
+        lst=[]
+        for i in range(len(productname)):
+
+            productlist = {"Product Name":productname[i].get('title'),"Product Price":productprice[i].text}
+            lst.append(productlist)
+        # print(lst)
+
+        productLink = "https://www.payTm.com" + box.div.div.div.a['href']  # extracting the actual product link
+        prodRes = requests.get(productLink)  # getting the product page from server
+        prod_html = bs(prodRes.text, "html.parser")  # parsing the product page as HTML
+        commentboxes = prod_html.find_all('div', {'class': "_3nrCtb"})

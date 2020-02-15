@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Flipkart Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+      <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+{% include "base.html" %}
+<div class="container">
+            <div class = "col-md-2 well" id = "image" width="450" height="350">
+        <div class ="row well">
+<!--                <img src="boy.jpg" class="img-circle" alt="Cinque Terre" width="320" height="320">-->
+                <strong><p id="name">Dontula Ravi Krishna</p></strong>
+                <div></div>
+            </div>
+                <div class = "col well -lg" width="450" height="250">
+                  <form action="/flipkart" method="POST">
+                      <h5>Sort By Relevance</h5>
+                      <input type="radio" name="gender" value="ascending"> Ascending<br>
+  <input type="radio" name="gender" value="descending"> Descending<br>
+        <input class="w2-input w2-border w3-light-grey" type="text" name="content1" id="content1" placeholder="Search..">
+        <input type="submit" name="index" value="search">
+        </form>
+            </div>
+        </div>
+                <div class = "col-md-10 ">
+            <div class="table-users">
+   <div class="header">Reviews</div>
+
+   <table cellspacing="0">
+      <tr>
+         <th>Product</th>
+         <th>Name</th>
+         <th>Rating</th>
+         <th>Comment Heading</th>
+         <th width="230">Comments</th>
+      </tr>
+         {% for review in lst %}
+      <tr>
+          <td><h5>{{review['Product Name']}}</h5></td>
+          <td><h5>{{review['ProductPrice']}}</h5></td>
+<!--         <td>{{review['Rating']}}</td>-->
+<!--         <td>{{review['CommentHead']}}</td>-->
+<!--         <td>{{review['Comment']}} </td>-->
+       {% endfor %}
+   </table>
+</div>
+                </div>
+</div>
+
+
+
+
+</body>
+
+</html>
